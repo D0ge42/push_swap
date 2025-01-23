@@ -34,18 +34,18 @@ void	free_stacks(t_stack *stacks, char *which)
 		free(stacks->a);
 		free(stacks->b);
 		free(stacks);
-        exit(EXIT_SUCCESS);
+		exit(EXIT_SUCCESS);
 	}
 }
-/* Used to close and free. Prints "Error" on stderror if args are not valid. 
+/* Used to close and free. Prints "Error" on stderror if args are not valid.
 Non valid args are:
 arguments aren’t integers
 some arguments are bigger than an integer and/or there are duplicates. */
 
 void	close_and_free(t_stack *stacks, char **args, char *args_free)
 {
-    if(!ft_strcmp(args_free,"FREE ARGS") && args)
-    free_args(args);
+	if (!ft_strcmp(args_free, "FREE ARGS") && args)
+		free_args(args);
 	ft_putstr_fd("Error\n", 2);
 	free_stacks(stacks, "BOTH");
 }
@@ -75,7 +75,7 @@ long long	ft_atoll(char *str, t_stack *stacks, char **args)
 	int			i;
 
 	if (ft_strlen(str) == 0)
-		close_and_free(stacks,args,"FREE ARGS");
+		close_and_free(stacks, args, "FREE ARGS");
 	num = 0;
 	sign = 1;
 	i = 0;
@@ -90,10 +90,10 @@ long long	ft_atoll(char *str, t_stack *stacks, char **args)
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
-			close_and_free(stacks,args,"FREE ARGS");
+			close_and_free(stacks, args, "FREE ARGS");
 		num = (num * 10) + (str[i] - '0');
 		if (!is_int(num * sign))
-			close_and_free(stacks,args,"FREE ARGS");
+			close_and_free(stacks, args, "FREE ARGS");
 		i++;
 	}
 	return (num * sign);

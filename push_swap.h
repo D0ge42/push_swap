@@ -9,17 +9,18 @@ typedef struct s_stack
 {
 	int				n_numbers;
 	long long int	*a;
-    long long int   *b;
+	long long int	*b;
 }					t_stack;
 
-void				check_for_errors(t_stack *stacks,int ac);
+void				check_for_duplicates(t_stack *stacks, int ac);
 long long			ft_atoll(char *str, t_stack *stacks, char **args);
-void				close_and_free(t_stack *stacks, char **args,char *args_free);
+void				close_and_free(t_stack *stacks, char **args,
+						char *args_free);
 void				free_stacks(t_stack *stacks, char *which);
-void                free_stacks(t_stack *stacks,char *which);
-int                 strchar(char c, char *str);
-void	            free_args(char **args);
-int                 count_nums(int ac, char **av);
-void check_malloc_fail(t_stack *stacks);
+void				free_stacks(t_stack *stacks, char *which);
+int					strchar(char c, char *str);
+void				free_args(char **args);
+int					count_nums(int ac, char **av);
+void				check_malloc_fail(t_stack *stacks);
 
 #endif

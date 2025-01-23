@@ -5,11 +5,15 @@ It will count "1 2 3" as 3 number and same goes for 1 2 3. */
 
 int	count_nums(int ac, char **av)
 {
-    char **args;
-    int i = 1;
-    int total_nums = 0;
-    int k = 0;
-    args = NULL;
+	char	**args;
+	int		i;
+	int		total_nums;
+	int		k;
+
+	i = 1;
+	total_nums = 0;
+	k = 0;
+	args = NULL;
 	while (i < ac)
 	{
 		if (strchar(' ', av[i]))
@@ -22,9 +26,9 @@ int	count_nums(int ac, char **av)
 			total_nums++;
 		i++;
 	}
-    if(args)
-        free_args(args);
-    return total_nums;
+	if (args)
+		free_args(args);
+	return (total_nums);
 }
 /*Function used to free arguments we get by using split on **av */
 
@@ -40,17 +44,17 @@ void	free_args(char **args)
 
 /*Check if malloc fails when allocating memory for both stacks*/
 
-void check_malloc_fail(t_stack *stacks)
+void	check_malloc_fail(t_stack *stacks)
 {
-    if(!stacks->a)
-    {
-        free(stacks);
-        exit(EXIT_FAILURE);
-    }
-    else if (!stacks->b)
-    {
-        free(stacks->a);
-        free(stacks);
-        exit(EXIT_FAILURE);
-    }
+	if (!stacks->a)
+	{
+		free(stacks);
+		exit(EXIT_FAILURE);
+	}
+	else if (!stacks->b)
+	{
+		free(stacks->a);
+		free(stacks);
+		exit(EXIT_FAILURE);
+	}
 }

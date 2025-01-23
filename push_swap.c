@@ -25,7 +25,7 @@ int	main(int ac, char **av)
 	// int *stack_b;
 	// Initialize stack_a with numbers.
 	fill_stacks(stacks, ac, av);
-	check_for_errors(stacks, ac);
+	check_for_duplicates(stacks, ac);
 	// Function to sort them. It has to take both array. Print Operations on stdout.
 	// Free everything that was previously allocated
 	free_stacks(stacks, "BOTH");
@@ -45,22 +45,22 @@ void	fill_stacks(t_stack *stacks, int ac, char **av)
 	k = 0;
 	i = 1;
 	j = 0;
-    args = NULL;
-    stacks->n_numbers = count_nums(ac,av);
+	args = NULL;
+	stacks->n_numbers = count_nums(ac, av);
 	stacks->a = malloc(sizeof(long long int) * (stacks->n_numbers));
 	stacks->b = malloc(sizeof(long long int) * (stacks->n_numbers));
-    check_malloc_fail(stacks);
-    while (i < ac)
+	check_malloc_fail(stacks);
+	while (i < ac)
 	{
 		if (strchar(' ', av[i]))
 		{
 			args = ft_split(av[i], ' ');
 			while (args[k])
-				(stacks->a)[j++] = ft_atoll(args[k++], stacks,args);
+				(stacks->a)[j++] = ft_atoll(args[k++], stacks, args);
 		}
 		else
-			(stacks->a)[j++] = ft_atoll(av[i], stacks,args);
-        i++;
+			(stacks->a)[j++] = ft_atoll(av[i], stacks, args);
+		i++;
 	}
 	if (args)
 		free_args(args);

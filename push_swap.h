@@ -12,7 +12,7 @@ typedef struct s_stack
 	long long int	*b;
 }					t_stack;
 
-void				check_for_duplicates(t_stack *stacks, int ac);
+void				check_for_duplicates(t_stack *stacks);
 long long			ft_atoll(char *str, t_stack *stacks, char **args);
 void				close_and_free(t_stack *stacks, char **args,
 						char *args_free);

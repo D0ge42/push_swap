@@ -1,5 +1,6 @@
 #include "push_swap.h"
 
-void	operation_sa(t_stack *a, int *stack_b)
+void	operation_sa(t_stack *stacks)
 {
+    
 }

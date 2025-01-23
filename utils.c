@@ -44,9 +44,9 @@ some arguments are bigger than an integer and/or there are duplicates. */
 
 void	close_and_free(t_stack *stacks, char **args, char *args_free)
 {
+	ft_putstr_fd("Error\n", 2);
 	if (!ft_strcmp(args_free, "FREE ARGS") && args)
 		free_args(args);
-	ft_putstr_fd("Error\n", 2);
 	free_stacks(stacks, "BOTH");
 }
 

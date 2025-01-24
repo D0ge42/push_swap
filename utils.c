@@ -29,6 +29,11 @@ void	free_stacks(t_stack *stacks, char *which)
 		free(stacks);
 		exit(EXIT_SUCCESS);
 	}
+	else if (!ft_strcmp(which,"Struct only"))
+	{
+		free(stacks);
+		exit(EXIT_SUCCESS);
+	}
 	else
 	{
 		free(stacks->a);

@@ -26,6 +26,9 @@ int	main(int ac, char **av)
 	// Initialize stack_a with numbers.
 	fill_stacks(stacks, ac, av);
 	check_for_duplicates(stacks);
+	(stacks->b)[0] = 123;
+	stacks->n_numbers_b+=1;
+	push(stacks,'a');
 	// Function to sort them. It has to take both array. Print Operations on stdout.
 	// Free everything that was previously allocated
 	free_stacks(stacks, "BOTH");
@@ -46,9 +49,12 @@ void	fill_stacks(t_stack *stacks, int ac, char **av)
 	i = 1;
 	j = 0;
 	args = NULL;
-	stacks->n_numbers = count_nums(ac, av);
-	stacks->a = malloc(sizeof(long long int) * (stacks->n_numbers));
-	stacks->b = malloc(sizeof(long long int) * (stacks->n_numbers));
+	if (ac == 1)
+		free_stacks(stacks,"Struct only");
+	stacks->n_numbers_a = count_nums(ac, av);
+	stacks->n_numbers_b = 0;
+	stacks->a = malloc(sizeof(long long int) * (stacks->n_numbers_a));
+	stacks->b = malloc(sizeof(long long int) * (stacks->n_numbers_a));
 	check_malloc_fail(stacks);
 	while (i < ac)
 	{
@@ -63,11 +69,11 @@ void	fill_stacks(t_stack *stacks, int ac, char **av)
 		i++;
 	}
     i = 0;
-    while(i < stacks->n_numbers)
-    {
-        ft_printf("STACK[%i] = %i\n",i,(stacks->a)[i]);
-        i++;
-    }
+    // while(i < stacks->n_numbers_a)
+    // {
+    //     ft_printf("STACK[%i] = %i\n",i,(stacks->a)[i]);
+    //     i++;
+    // }
 	if (args)
 		free_args(args);
 }

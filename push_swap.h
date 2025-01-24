@@ -7,7 +7,8 @@
 
 typedef struct s_stack
 {
-	int				n_numbers;
+	int				n_numbers_a;
+	int				n_numbers_b;
 	long long int	*a;
 	long long int	*b;
 }					t_stack;
@@ -22,5 +23,12 @@ int					strchar(char c, char *str);
 void				free_args(char **args);
 int					count_nums(int ac, char **av);
 void				check_malloc_fail(t_stack *stacks);
+
+
+/*Operations*/
+
+void push_a(t_stack *stacks);
+void push_b(t_stack *stacks);
+void    push(t_stack *stacks, char which);
 
 #endif

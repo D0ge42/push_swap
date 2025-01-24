@@ -30,5 +30,7 @@ void				check_malloc_fail(t_stack *stacks);
 void push_a(t_stack *stacks);
 void push_b(t_stack *stacks);
 void    push(t_stack *stacks, char which);
+void	rotate_a(t_stack *stacks);
+void	rotate_b(t_stack *stacks);
 
 #endif

@@ -42,5 +42,6 @@ void	swap_a(t_stack *stacks);
 void	swap_b(t_stack *stacks);
 void	swap_ss(t_stack *stacks);
 void	swap(t_stack *stacks, char which);
+int is_highest_on_top(t_stack *stacks);
 
 #endif

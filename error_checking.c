@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_checking.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/25 12:25:19 by lonulli           #+#    #+#             */
+/*   Updated: 2025/01/25 12:25:20 by lonulli          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 /*Check for duplicates inside initialized and filled stacks*/
@@ -15,7 +27,7 @@ void	check_for_duplicates(t_stack *stacks)
 				close_and_free(stacks, NULL, "Don't free args");
 			j++;
 		}
-        j = 0;
+		j = 0;
 		i++;
 	}
 }

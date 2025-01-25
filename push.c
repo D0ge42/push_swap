@@ -116,6 +116,7 @@ void	push_b(t_stack *stacks)
 	}
 }
 
+
 void	push(t_stack *stacks, char which)
 {
 	if (stacks->n_numbers_b >= 1 && which == 'a')
@@ -128,117 +129,4 @@ void	push(t_stack *stacks, char which)
 		push_b(stacks);
 		ft_printf("pb\n");
 	}
-}
-
-void	swap_ss(t_stack *stacks)
-{
-	int	tmpA;
-	int	tmpB;
-
-	tmpA = 0;
-	tmpB = 0;
-	if ((stacks->n_numbers_a) > 1 && (stacks->n_numbers_b) > 1)
-	{
-		tmpA = (stacks->a)[0];
-		(stacks->a)[0] = (stacks->a)[1];
-		(stacks->a)[1] = tmpA;
-		tmpB = (stacks->b)[0];
-		(stacks->b)[0] = (stacks->b)[1];
-		(stacks->b)[1] = tmpB;
-		ft_printf("ss\n", 1);
-	}
-}
-
-void	swap(t_stack *stacks, char which)
-{
-	int	tmpA;
-	int	tmpB;
-
-	tmpA = 0;
-	tmpB = 0;
-	if (which == 'a')
-	{
-		if ((stacks->n_numbers_a) > 1)
-		{
-			tmpA = (stacks->a)[0];
-			(stacks->a)[0] = (stacks->a)[1];
-			(stacks->a)[1] = tmpA;
-			ft_printf("sa\n", 1);
-		}
-	}
-	else if (which == 'b')
-	{
-		if ((stacks->n_numbers_b) > 1)
-		{
-			tmpB = (stacks->b)[0];
-			(stacks->b)[0] = (stacks->b)[1];
-			(stacks->b)[1] = tmpB;
-			ft_printf("sb\n", 1);
-		}
-	}
-}
-
-void	rotate_a(t_stack *stacks)
-{
-	int				j;
-    int             i;
-	long long int	tmp_arrayA[stacks->n_numbers_a];
-
-	j = 0;
-    //We first copy everything but last element into a temporary array.
-	while (j < (stacks->n_numbers_a - 1))
-    {
-		tmp_arrayA[j] = (stacks->a)[j];
-        j++;
-    }
-    j = 0;
-    i = 1;
-    //First one become last one
-    (stacks->a)[0] = (stacks->a)[stacks->n_numbers_a - 1];
-    //We now copy from element at index 1 to the end
-	while (i < stacks->n_numbers_a)
-	{
-        (stacks->a)[i] = tmp_arrayA[j];
-        i++;
-        j++;
-	}
-    i = 0;
-    while(i < stacks->n_numbers_a)
-    {
-        ft_printf("Stacks a[%i] = %lli\n",i,(stacks->a)[i]);
-        i++;
-    }
-}
-
-
-void	rotate_b(t_stack *stacks)
-{
-	int				j;
-    int             i;
-	long long int	tmp_arrayB[stacks->n_numbers_b];
-
-	j = 0;
-    //We first copy everything but last element into a temporary array.
-	while (j < (stacks->n_numbers_b - 1))
-    {
-		tmp_arrayB[j] = (stacks->b)[j];
-        j++;
-    }
-    j = 0;
-    i = 1;
-    //First one become last one
-    (stacks->b)[0] = (stacks->b)[stacks->n_numbers_b - 1];
-    //We now copy from element at index 1 to the end
-	while (i < stacks->n_numbers_b)
-	{
-        (stacks->b)[i] = tmp_arrayB[j];
-        i++;
-        j++;
-	}
-    i = 0;
-    while(i < stacks->n_numbers_b)
-    {
-        ft_printf("Stacks b[%i] = %lli\n",i,(stacks->b)[i]);
-        i++;
-    }
 }

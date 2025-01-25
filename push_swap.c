@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/25 12:22:26 by lonulli           #+#    #+#             */
+/*   Updated: 2025/01/25 12:34:59 by lonulli          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 // Ac - 1 is gonna be the number of numbers to sort.
@@ -26,18 +38,6 @@ int	main(int ac, char **av)
 	// Initialize stack_a with numbers.
 	fill_stacks(stacks, ac, av);
 	check_for_duplicates(stacks);
-	push(stacks,'b');
-	push(stacks,'b');
-	push(stacks,'b');
-	push(stacks,'b');
-	rotate_b(stacks);
-	ft_printf("\n");
-	rotate_b(stacks);
-	ft_printf("\n");
-	rotate_b(stacks);
-	ft_printf("\n");
-	rotate_b(stacks);
-	
 	// Function to sort them. It has to take both array. Print Operations on stdout.
 	// Free everything that was previously allocated
 	free_stacks(stacks, "BOTH");
@@ -59,7 +59,7 @@ void	fill_stacks(t_stack *stacks, int ac, char **av)
 	j = 0;
 	args = NULL;
 	if (ac == 1)
-		free_stacks(stacks,"Struct only");
+		free_stacks(stacks, "Struct only");
 	stacks->n_numbers_a = count_nums(ac, av);
 	stacks->n_numbers_b = 0;
 	stacks->a = malloc(sizeof(long long int) * (stacks->n_numbers_a));

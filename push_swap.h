@@ -5,6 +5,8 @@
 # include <limits.h>
 # include <stdlib.h>
 
+#define BOTH 'x'
+
 typedef struct s_stack
 {
 	int				n_numbers_a;
@@ -30,7 +32,15 @@ void				check_malloc_fail(t_stack *stacks);
 void push_a(t_stack *stacks);
 void push_b(t_stack *stacks);
 void    push(t_stack *stacks, char which);
+void	rrotate_a(t_stack *stacks);
+void	rrotate_b(t_stack *stacks);
+void	rrotate(t_stack *stacks, char which);
 void	rotate_a(t_stack *stacks);
 void	rotate_b(t_stack *stacks);
+void	rotate(t_stack *stacks,char which);
+void	swap_a(t_stack *stacks);
+void	swap_b(t_stack *stacks);
+void	swap_ss(t_stack *stacks);
+void	swap(t_stack *stacks, char which);
 
 #endif

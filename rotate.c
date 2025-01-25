@@ -6,7 +6,7 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:20:22 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/25 12:22:51 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/25 23:51:14 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ void	rotate_a(t_stack *stacks)
 		i++;
 	}
 	j = 0;
-	i = 1;
+	i = 0;
 	// Last one becomes first one 1 2 3 4 5  -->  2 3 4 5 1
 	(stacks->a)[stacks->n_numbers_a - 1] = (stacks->a)[0];
 	// We now copy from element at index 1 up to the end.
-	while (i < stacks->n_numbers_a)
+	while (i < stacks->n_numbers_a - 1)
 	{
 		(stacks->a)[i] = tmp_arrayA[j];
 		i++;
@@ -77,15 +77,13 @@ void	rotate_b(t_stack *stacks)
 		i++;
 	}
 	j = 0;
-	i = 1;
-	// Last one becomes first one 1 2 3 4 5  -->  2 3 4 5 1
+	i = 0;
+	// Last one becomes first one 1 2 3 4 5  -->  x x x x 1
 	(stacks->b)[stacks->n_numbers_b - 1] = (stacks->b)[0];
 	// We now copy from element at index 1 up to the end.
-	while (i < stacks->n_numbers_b)
+	while (i < stacks->n_numbers_b - 1)
 	{
-		(stacks->b)[i] = tmp_arrayB[j];
+		(stacks->b)[i] = tmp_arrayB[i];
 		i++;
-		j++;
 	}
-	i = 0;
 }

@@ -163,11 +163,12 @@ but first cheapest number is 6, so we push 6.
 STACK_A       STACK_B
 
                
-  6             1
-  3             7           
-  9             5
-  4             2
-  8
+                1
+  3             7
+  9             6
+  4             5
+  8             2
+  
 
 ----------------------
 

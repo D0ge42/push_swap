@@ -43,5 +43,8 @@ void	swap_b(t_stack *stacks);
 void	swap_ss(t_stack *stacks);
 void	swap(t_stack *stacks, char which);
 int is_highest_on_top(t_stack *stacks);
+int is_topush_smallest(t_stack *stacks);
+int is_topush_biggest(t_stack *stacks);
+int find_num_position(t_stack *stacks);
 
 #endif

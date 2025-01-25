@@ -6,7 +6,7 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:22:26 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/25 20:10:31 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/26 00:12:39 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,17 @@ int	main(int ac, char **av)
 	check_for_duplicates(stacks);
 	push_b(stacks);
 	push_b(stacks);
+	push_b(stacks);
+	push_b(stacks);
+	int i = find_num_position(stacks);
+	ft_printf("Rotation to do %i\n",i);
+	while(i > 0)
+	{
+		rotate(stacks,'b');
+		i--;
+	}
+	push_b(stacks);
 	print_stacks(stacks);
-	if (is_highest_on_top(stacks))
-		ft_printf("Highest number is on top, Only need 1 move.\n");
 	// Function to sort them. It has to take both array. Print Operations on stdout.
 	// Free everything that was previously allocated
 	free_stacks(stacks, "BOTH");

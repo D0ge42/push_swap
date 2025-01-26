@@ -6,7 +6,7 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 19:10:18 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/26 20:41:43 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/26 21:53:56 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 void sort_stack_a(t_stack *stacks);
 int num_rotation_b(t_stack *stacks);
 int num_rotation_a(t_stack *stacks, int index);
+int find_lowest_num_a(t_stack *stacks);
 
 
 int is_highest_on_top(t_stack *stacks)
@@ -92,16 +93,19 @@ void algorithm(t_stack *stacks)
     //We push until 3 numbers are left in the stack.
     while(stacks->n_numbers_a > 3)
         push(stacks,'b');
-    print_stacks(stacks);
     //Once we've pushed all the numbers but 3 in b, it's time to sort stack A.
     sort_stack_a(stacks);
-    print_stacks(stacks);
     int i = stacks->n_numbers_b;
     while(i--)
     {
         find_common_rotation(stacks);
         push(stacks,'a');
-        print_stacks(stacks);
+    }
+    int ordinate = find_lowest_num_a(stacks);
+    while (ordinate)
+    {
+        rotate(stacks,'a');
+        ordinate--;
     }
     //Now we can start looking for the correct position of the number from stack_b to a.
 }
@@ -109,24 +113,27 @@ void algorithm(t_stack *stacks)
 int num_rotation_a(t_stack *stacks, int index)
 {
     long long int num  = (stacks->b)[index];
-    ft_printf("Num to push %i\n",num);
     int i  = 1;
     if (is_topush_smallest(stacks,index))
-    {
-        ft_printf("Num to push is smallest or biggest %i\n",(stacks->b)[index]);
         return 0;
+    if (is_topush_biggest(stacks,index))
+    {
+        return (find_lowest_num_a(stacks));
+        // if (index > stacks->n_numbers_a / 2)
+        // {
+        //     //Rra instead of RA.
+        // }
     }
     while(i < stacks->n_numbers_a)
     {
         if(num > (stacks->a)[i - 1] && num < (stacks->a)[i])
-        {
-            return i;
-        }
+            break;
         i++;
     }
-    ft_printf("Rotations before pushing %i\n",i);
     return i ;
 }
+
+
 
 
 int num_rotation_b(t_stack *stacks)

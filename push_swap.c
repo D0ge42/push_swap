@@ -6,7 +6,7 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:22:26 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/26 00:12:39 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/26 17:14:20 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,7 @@ int	main(int ac, char **av)
 	// Initialize stack_a with numbers.
 	fill_stacks(stacks, ac, av);
 	check_for_duplicates(stacks);
-	push_b(stacks);
-	push_b(stacks);
-	push_b(stacks);
-	push_b(stacks);
-	int i = find_num_position(stacks);
-	ft_printf("Rotation to do %i\n",i);
-	while(i > 0)
-	{
-		rotate(stacks,'b');
-		i--;
-	}
-	push_b(stacks);
+	algorithm(stacks);
 	print_stacks(stacks);
 	// Function to sort them. It has to take both array. Print Operations on stdout.
 	// Free everything that was previously allocated

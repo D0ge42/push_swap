@@ -6,7 +6,7 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:25:33 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/25 12:25:42 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/26 18:32:47 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,19 @@ void	rrotate(t_stack *stacks, char which)
 {
 	if (stacks->n_numbers_a >= 2 && which == 'a')
 	{
-		rotate_a(stacks);
+		rrotate_a(stacks);
 		ft_printf("rra\n");
 	}
 	else if (stacks->n_numbers_b >= 2 && which == 'b')
 	{
-		rotate_b(stacks);
+		rrotate_b(stacks);
 		ft_printf("rrb\n");
 	}
 	else if (stacks->n_numbers_b >= 2
 	&& stacks->n_numbers_a >= 2 && which == BOTH)
 	{
-		rotate_a(stacks);
-		rotate_b(stacks);
+		rrotate_a(stacks);
+		rrotate_b(stacks);
 		ft_printf("rr\n");
 	}
 }

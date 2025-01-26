@@ -6,7 +6,7 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:20:22 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/25 23:51:14 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/26 16:05:36 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,8 @@ void	rotate_a(t_stack *stacks)
 	// We now copy from element at index 1 up to the end.
 	while (i < stacks->n_numbers_a - 1)
 	{
-		(stacks->a)[i] = tmp_arrayA[j];
+		(stacks->a)[i] = tmp_arrayA[i];
 		i++;
-		j++;
 	}
 }
 

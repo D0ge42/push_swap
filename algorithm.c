@@ -6,7 +6,7 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 19:10:18 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/26 00:14:17 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/26 20:41:43 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,97 +20,157 @@
 //Highest in STACK_B. In this case it should be placed on top of STACK_B biggest n.
 
 /*Will check if the highest number in STACK_B is placed on top.*/
+void sort_stack_a(t_stack *stacks);
+int num_rotation_b(t_stack *stacks);
+int num_rotation_a(t_stack *stacks, int index);
 
 
 int is_highest_on_top(t_stack *stacks)
 {
     int i = 1;
-    int j = 1;
+    long long int num1 = (stacks->b)[0];
     while(i < stacks->n_numbers_b)
     {
-        if(!(((stacks->b)[0]) > ((stacks->b)[j])))
+        long long int num_to_check = (stacks->b)[i];
+        if (num1 < num_to_check)
+        {
+            ft_printf("Biggest number is not on top\n");
             return 0;
+        }
         i++;
-        j++;
     }
+    ft_printf("Biggest number is on top\n");
     return 1;
 }
 
-/*If the number we push is gonna be the new smallest/Biggest it has to be placed
-on top of biggest num in stack_b*/
 
-int is_topush_biggest(t_stack *stacks)
+int is_topush_biggest(t_stack *stacks, int index)
 {
-    long long num_to_push = (stacks->a)[0];
+    long long num_to_push = (stacks->b)[index];
     int i = 0;
-    while(i < stacks->n_numbers_b)
+    while(i < stacks->n_numbers_a)
     {
-        if(!(num_to_push > (stacks->b)[i]))
+        if(!(num_to_push > (stacks->a)[i]))
             return 0;
         i++;
     }
     return 1;
 }
-int is_topush_smallest(t_stack *stacks)
+int is_topush_smallest(t_stack *stacks, int index)
 {
-    long long num_to_push = (stacks->a)[0];
+    long long num_to_push = (stacks->b)[index];
     int i = 0;
-    while(i < stacks->n_numbers_b)
+    while(i < stacks->n_numbers_a)
     {
-        if(!(num_to_push < (stacks->b)[i]))
+        if(!(num_to_push < (stacks->a)[i]))
             return 0;
         i++;
     }
     return 1;
 }
 
-/*If the number we've to push is not gonna be biggest nor smallest, we've to find
-the right place for him and count the moves we need.*/
-
-int find_num_position(t_stack *stacks)
+void find_common_rotation(t_stack *stacks)
 {
-    int num_to_push = (stacks->a)[0];
-    long long int difference[stacks->n_numbers_b];
-    long long int smallest_difference = 0;
-    int index = 0;
-    int i = 0;    
-    //If number is not gonna be the biggest or lowest, we've to place it appropriately.
-    //We store differences in an lli array.
-    if((is_topush_biggest(stacks) || is_topush_smallest(stacks))
-    && is_highest_on_top(stacks))
+    int num_rot_b = num_rotation_b(stacks);
+    int num_rot_a = num_rotation_a(stacks, num_rot_b);
+    //Common rotations
+    int rr = min(num_rot_a,num_rot_b);
+    while(rr--)
+        rotate(stacks,BOTH);
+
+    // Calculate and print remaining rotations
+    int remaining_rot_a = num_rot_a - min(num_rot_a, num_rot_b);
+    int remaining_rot_b = num_rot_b - min(num_rot_a, num_rot_b);
+    while (remaining_rot_a--)
+        rotate(stacks, 'a');
+    while (remaining_rot_b--)
+        rotate(stacks, 'b');
+}
+
+void algorithm(t_stack *stacks)
+{
+    //We push until 3 numbers are left in the stack.
+    while(stacks->n_numbers_a > 3)
+        push(stacks,'b');
+    print_stacks(stacks);
+    //Once we've pushed all the numbers but 3 in b, it's time to sort stack A.
+    sort_stack_a(stacks);
+    print_stacks(stacks);
+    int i = stacks->n_numbers_b;
+    while(i--)
+    {
+        find_common_rotation(stacks);
+        push(stacks,'a');
+        print_stacks(stacks);
+    }
+    //Now we can start looking for the correct position of the number from stack_b to a.
+}
+
+int num_rotation_a(t_stack *stacks, int index)
+{
+    long long int num  = (stacks->b)[index];
+    ft_printf("Num to push %i\n",num);
+    int i  = 1;
+    if (is_topush_smallest(stacks,index))
+    {
+        ft_printf("Num to push is smallest or biggest %i\n",(stacks->b)[index]);
         return 0;
-    while (i < stacks->n_numbers_b)
-    {
-
-            difference[i] = num_to_push - (stacks->b)[i];
-            if(difference[i] < 0)
-                difference[i]*=-1;
-            i++;
     }
-    i = 0;
-    smallest_difference = difference[0];
-    while(i < stacks->n_numbers_b)
+    while(i < stacks->n_numbers_a)
     {
-            if(difference[i] <= smallest_difference)
-            {
-                smallest_difference = difference[i];
-                index = i;
-            }
+        if(num > (stacks->a)[i - 1] && num < (stacks->a)[i])
+        {
+            return i;
+        }
         i++;
     }
-    return index;
+    ft_printf("Rotations before pushing %i\n",i);
+    return i ;
 }
 
 
+int num_rotation_b(t_stack *stacks)
+{
+    int i = 1;
+    int lowest = (stacks->b)[0];
+    int rot_b = 0;
+    while(i < stacks->n_numbers_b)
+    {
+        int to_check = (stacks->b)[i];
+        if(to_check < lowest)
+        {
+            lowest = to_check;
+            rot_b = i;
+        }
+        i++;
+    }
+    return rot_b;
+}
 
-// void find_lowest_moves(t_stack *stacks)
-// {
-//     int moves[stacks->n_numbers_a];
-//     int i = 0;
-//     while(i < stacks->n_numbers_a)
-//     {
-//         moves[i] = //Numbers of moves;
-//     }
-//     //Find lowest number inside moves[i] 
-//     // --> its index will be the index of the number to push.
-// }
+int find_lowest_num_a(t_stack *stacks)
+{
+    int i = 1;
+    int lowest = (stacks->a)[0];
+    int index = 0;
+    while(i < stacks->n_numbers_a)
+    {
+        int to_check = (stacks->a)[i];
+        if(to_check < lowest)
+        {
+            lowest = to_check;
+            index = i;
+        }
+        i++;
+    }
+    return index; //Index of lowest num.
+}
+
+void sort_stack_a(t_stack *stacks)
+{
+    if (stacks->a[0] > stacks->a[1] && stacks->a[0] > stacks->a[2])
+        rotate(stacks, 'a'); 
+    else if (stacks->a[1] > stacks->a[0] && stacks->a[1] > stacks->a[2])
+        rrotate(stacks, 'a');
+    if (stacks->a[0] > stacks->a[1])
+        swap(stacks, 'a');
+}

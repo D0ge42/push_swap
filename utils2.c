@@ -58,3 +58,11 @@ void	check_malloc_fail(t_stack *stacks)
 		exit(EXIT_FAILURE);
 	}
 }
+
+int min(int a, int b)
+{
+	if(a >= b)
+		return b;
+	else
+		return a;
+}

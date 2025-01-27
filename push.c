@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 09:40:40 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/24 17:59:51 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:43:43 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ void	realloc_stack_b(t_stack *stacks)
 {
 	int				i;
 	int				j;
-	long long int	tmp_arrayB[stacks->n_numbers_b];
-
+	long long int *tmp_arrayB;
+	tmp_arrayB = malloc(sizeof(long long int) * (stacks->n_numbers_b));
+	if (!tmp_arrayB)
+		free_stacks(stacks,"BOTH");
+	
 	i = 1;
 	j = 0;
 	// Salvo tutti i valori di B in un temp array a partire da i + 1;
@@ -39,14 +42,18 @@ void	realloc_stack_b(t_stack *stacks)
 		(stacks->b)[j] = tmp_arrayB[j];
 		j++;
 	}
+	free(tmp_arrayB);
 }
 
 void	realloc_stack_a(t_stack *stacks)
 {
 	int				i;
 	int				j;
-	long long int	tmp_arrayA[stacks->n_numbers_a];
-
+	long long int *tmp_arrayA;
+	tmp_arrayA = malloc(sizeof(long long int) * stacks->n_numbers_a);
+	if (!tmp_arrayA)
+		free_stacks(stacks,"BOTH");
+	
 	i = 1;
 	j = 0;
 	// Salvo tutti i valori di A in un temp array a partire da i + 1;
@@ -66,13 +73,17 @@ void	realloc_stack_a(t_stack *stacks)
 		(stacks->a)[j] = tmp_arrayA[j];
 		j++;
 	}
+	free(tmp_arrayA);
 }
 
 void	push_a(t_stack *stacks)
 {
 	int				i;
 	int				j;
-	long long int	tmp_arrayA[stacks->n_numbers_a + 1];
+	long long int *tmp_arrayA;
+	tmp_arrayA = malloc(sizeof(long long int) * (stacks->n_numbers_a + 1));
+	if (!tmp_arrayA)
+		free_stacks(stacks,"BOTH");
 
 	i = 1;
 	j = 0;
@@ -90,14 +101,17 @@ void	push_a(t_stack *stacks)
 		(stacks->a)[i] = tmp_arrayA[i];
 		i++;
 	}
+	free(tmp_arrayA);
 }
 
 void	push_b(t_stack *stacks)
 {
 	int				i;
 	int				j;
-	long long int	tmp_arrayB[stacks->n_numbers_b + 1];
-
+	long long int *tmp_arrayB;
+	tmp_arrayB = malloc(sizeof(long long int) * (stacks->n_numbers_b + 1));
+	if (!tmp_arrayB)
+		free_stacks(stacks,"BOTH");
 	i = 1;
 	j = 0;
 	tmp_arrayB[0] = (stacks->a)[0];
@@ -114,6 +128,7 @@ void	push_b(t_stack *stacks)
 		(stacks->b)[i] = tmp_arrayB[i];
 		i++;
 	}
+	free(tmp_arrayB);
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:20:22 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/26 16:05:36 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/27 15:45:47 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ void	rotate_a(t_stack *stacks)
 {
 	int j;
 	int i;
-	long long int tmp_arrayA[stacks->n_numbers_a];
-
+	long long int *tmp_arrayA;
+	tmp_arrayA = malloc(sizeof(long long int) * (stacks->n_numbers_a));
+	if (!tmp_arrayA)
+		free_stacks(stacks,"BOTH");
 	j = 0;
 	i = 1;
 	// We first copy everything but the first  element into a temporary array.
@@ -58,13 +60,17 @@ void	rotate_a(t_stack *stacks)
 		(stacks->a)[i] = tmp_arrayA[i];
 		i++;
 	}
+	free(tmp_arrayA);
 }
 
 void	rotate_b(t_stack *stacks)
 {
 	int j;
 	int i;
-	long long int tmp_arrayB[stacks->n_numbers_b];
+	long long int *tmp_arrayB;
+	tmp_arrayB = malloc(sizeof(long long int) * (stacks->n_numbers_b));
+	if (!tmp_arrayB)
+		free_stacks(stacks,"BOTH");
 
 	j = 0;
 	i = 1;
@@ -85,4 +91,5 @@ void	rotate_b(t_stack *stacks)
 		(stacks->b)[i] = tmp_arrayB[i];
 		i++;
 	}
+	free(tmp_arrayB);
 }

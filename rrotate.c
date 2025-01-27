@@ -16,11 +16,11 @@ void	rrotate_a(t_stack *stacks)
 {
 	int				j;
 	int				i;
-	long long int *tmp_arrayA;
+	long long int	*tmp_arrayA;
+
 	tmp_arrayA = malloc(sizeof(long long int) * stacks->n_numbers_a);
 	if (!tmp_arrayA)
-		free_stacks(stacks,"BOTH");
-
+		free_stacks(stacks, "BOTH");
 	j = 0;
 	// We first copy everything but last element into a temporary array.
 	while (j < (stacks->n_numbers_a - 1))
@@ -42,11 +42,11 @@ void	rrotate_b(t_stack *stacks)
 {
 	int				j;
 	int				i;
-	long long int *tmp_arrayB;
+	long long int	*tmp_arrayB;
+
 	tmp_arrayB = malloc(sizeof(long long int) * stacks->n_numbers_b);
 	if (!tmp_arrayB)
-		free_stacks(stacks,"BOTH");
-	
+		free_stacks(stacks, "BOTH");
 	j = 0;
 	// We first copy everything but last element into a temporary array.
 	while (j < (stacks->n_numbers_b - 1))
@@ -76,8 +76,8 @@ void	rrotate(t_stack *stacks, char which)
 		rrotate_b(stacks);
 		ft_printf("rrb\n");
 	}
-	else if (stacks->n_numbers_b >= 2
-	&& stacks->n_numbers_a >= 2 && which == BOTH)
+	else if (stacks->n_numbers_b >= 2 && stacks->n_numbers_a >= 2
+		&& which == BOTH)
 	{
 		rrotate_a(stacks);
 		rrotate_b(stacks);

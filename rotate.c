@@ -24,8 +24,8 @@ void	rotate(t_stack *stacks, char which)
 		rotate_b(stacks);
 		ft_printf("rb\n");
 	}
-	else if (stacks->n_numbers_b >= 2
-	&& stacks->n_numbers_a >= 2 && which == BOTH)
+	else if (stacks->n_numbers_b >= 2 && stacks->n_numbers_a >= 2
+		&& which == BOTH)
 	{
 		rotate_a(stacks);
 		rotate_b(stacks);
@@ -35,12 +35,13 @@ void	rotate(t_stack *stacks, char which)
 
 void	rotate_a(t_stack *stacks)
 {
-	int j;
-	int i;
-	long long int *tmp_arrayA;
+	int				j;
+	int				i;
+	long long int	*tmp_arrayA;
+
 	tmp_arrayA = malloc(sizeof(long long int) * (stacks->n_numbers_a));
 	if (!tmp_arrayA)
-		free_stacks(stacks,"BOTH");
+		free_stacks(stacks, "BOTH");
 	j = 0;
 	i = 1;
 	// We first copy everything but the first  element into a temporary array.
@@ -70,7 +71,7 @@ void	rotate_b(t_stack *stacks)
 	long long int *tmp_arrayB;
 	tmp_arrayB = malloc(sizeof(long long int) * (stacks->n_numbers_b));
 	if (!tmp_arrayB)
-		free_stacks(stacks,"BOTH");
+		free_stacks(stacks, "BOTH");
 
 	j = 0;
 	i = 1;

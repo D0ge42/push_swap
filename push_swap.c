@@ -65,7 +65,6 @@ int	main(int ac, char **av)
 		free_stacks(stacks, "Struct only");
 	// Initialize stack_a with numbers.
 	fill_stacks(stacks, ac, av);
-	
 	check_for_duplicates(stacks);
 	algorithm(stacks);
 	print_stacks(stacks);

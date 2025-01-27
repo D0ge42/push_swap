@@ -59,10 +59,10 @@ void	check_malloc_fail(t_stack *stacks)
 	}
 }
 
-int min(int a, int b)
+int	min(int a, int b)
 {
-	if(a >= b)
-		return b;
+	if (a >= b)
+		return (b);
 	else
-		return a;
+		return (a);
 }

@@ -61,5 +61,3 @@ void	swap(t_stack *stacks, char which)
 		&& which == 'a' && which == BOTH)
 		swap_ss(stacks);
 }
-
-

@@ -6,7 +6,7 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 19:10:18 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/27 18:30:21 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/27 22:18:12 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,7 @@ int	num_rotation_b(t_stack *stacks, int index)
 
 	rotations = index;
 	if (rotations > get_abs(rotations - stacks->n_numbers_b))
-	{
 		rotations -= stacks->n_numbers_b;
-	}
 	return (rotations);
 }
 
@@ -117,10 +115,12 @@ int	num_rotation_a(t_stack *stacks, int index)
 	if (is_topush_biggest(stacks, index))
 	{
 		rotation = (find_lowest_num_a(stacks));
+		if (rotation == 0)
+			return (0);
 		if (rotation > get_abs(i - stacks->n_numbers_a))
 		{
-		    rotation -= stacks->n_numbers_a;
-		    return (rotation);
+			rotation -= stacks->n_numbers_a;
+			return (rotation);
 		}
 	}
 	while (i < stacks->n_numbers_a)
@@ -129,36 +129,58 @@ int	num_rotation_a(t_stack *stacks, int index)
 			break ;
 		i++;
 	}
-	if (i < get_abs(i - stacks->n_numbers_a))
-	{
+	if (i > get_abs(i - stacks->n_numbers_a))
 		i = i - stacks->n_numbers_a;
-	}
 	return (i);
 }
 
-void move_parser(t_stack *stacks) 
+void	move_parser(t_stack *stacks, int *total_moves)
 {
 	int	i;
+	int	rot_a;
+	int	rot_b;
+	int	common_rrrotation;
+	int	residual_a;
+	int	residual_b;
+
 	i = 0;
 	while (i < stacks->n_numbers_b)
 	{
-		int rot_a = num_rotation_a(stacks, i);
-		int rot_b = num_rotation_b(stacks, i);
+		rot_a = num_rotation_a(stacks, i);
+		rot_b = num_rotation_b(stacks, i);
+		// ft_printf("Number %i requires ROT_A = %i and ROT_B = %i\n",(stacks->b)[i],rot_a,rot_b);
 		if (rot_a < 0 && rot_b < 0)
 		{
-			//There are common RRR rotations
-			
+			// Take the more negative number for common rotations
+			// -2 -3 -> max = 2 
+			common_rrrotation = get_abs(max(rot_a, rot_b));
+			residual_a = rot_a - common_rrrotation; // Use
+			residual_b = rot_b - common_rrrotation;
+			total_moves[i] = common_rrrotation + get_abs(max(residual_a,residual_b));
+			// ft_printf("CRR = Total_moves[%i] = %i + %i\n", i, common_rrrotation,
+			// 	get_abs(max(residual_a, residual_b)));
 		}
+		else if (rot_a > 0 && rot_b > 0)
+		{
+			common_rrrotation = min(rot_a, rot_b);
+			residual_a = rot_a - common_rrrotation;
+			residual_b = rot_b - common_rrrotation;
+			total_moves[i] = common_rrrotation + max(residual_a, residual_b);
+		}
+		else
+		{
+			total_moves[i] = get_abs(rot_a) + get_abs(rot_b);
+			// ft_printf("Total_moves[%i] = %i + %i\n", i, get_abs(rot_a),
+			// 	get_abs(rot_b));
+		}
+		i++;
 	}
-	// if (ft_strcmp(str, "RRR"))
-	// {
-
-	// }
 }
 
 void	algorithm(t_stack *stacks)
 {
 	int	i;
+	int	*total_moves;
 
 	// int	ordinate;
 	i = 0;
@@ -166,18 +188,16 @@ void	algorithm(t_stack *stacks)
 	// We push until 3 numbers are left in the stack.
 	while (stacks->n_numbers_a > 3)
 		push(stacks, 'b');
-	int *total_moves = malloc(sizeof(int ) * stacks->n_numbers_b);
+	total_moves = malloc(sizeof(int) * stacks->n_numbers_b);
 	// Once we've pushed all the numbers but 3 in b, it's time to sort stack A.
 	sort_stack_a(stacks);
+	move_parser(stacks, total_moves);
 	while (i < stacks->n_numbers_b)
 	{
-		ft_printf("Num of Rotation for a = %i\n",num_rotation_a(stacks,i));
-		ft_printf("Num of Rotation for b = %i\n",num_rotation_b(stacks,i));
-		//total_moves[i] = num_rotation_a(stacks, i, &reverse_flagA) + num_rotation_b(stacks, i, &reverse_flagB);
-		// ft_printf("\n\n");
+		ft_printf("Total moves for %lli at index %i = %i\n", (stacks->b)[i], i,
+			total_moves[i]);
 		i++;
 	}
-
 	// i = stacks->n_numbers_b;
 	// while (i--)
 	// {
@@ -192,6 +212,7 @@ void	algorithm(t_stack *stacks)
 	// 	ordinate--;
 	// }
 	// Now we can start looking for the correct position of the number from stack_b to a.
+	free(total_moves);
 }
 
 int	get_abs(long long int num)

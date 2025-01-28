@@ -6,7 +6,7 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:22:26 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/28 14:52:56 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/28 22:44:21 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	main(int ac, char **av)
 	fill_stacks(stacks, ac, av);
 	check_for_duplicates(stacks);
 	algorithm(stacks);
-	print_stacks(stacks);
+	// print_stacks(stacks);
 	// Function to sort them. It has to take both array. Print Operations on stdout.
 	// Free everything that was previously allocated
 	free_stacks(stacks, "BOTH");

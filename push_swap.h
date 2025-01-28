@@ -20,7 +20,6 @@ long long			ft_atoll(char *str, t_stack *stacks, char **args);
 void				close_and_free(t_stack *stacks, char **args,
 						char *args_free);
 void				free_stacks(t_stack *stacks, char *which);
-void				free_stacks(t_stack *stacks, char *which);
 int					strchar(char c, char *str);
 void				free_args(char **args);
 int					count_nums(int ac, char **av);

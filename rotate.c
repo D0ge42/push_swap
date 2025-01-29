@@ -6,7 +6,7 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:20:22 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/27 15:45:47 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/29 14:23:05 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,60 +37,54 @@ void	rotate_a(t_stack *stacks)
 {
 	int				j;
 	int				i;
-	long long int	*tmp_arrayA;
+	long long int	*tmp_array_a;
 
-	tmp_arrayA = malloc(sizeof(long long int) * (stacks->n_numbers_a));
-	if (!tmp_arrayA)
+	tmp_array_a = malloc(sizeof(long long int) * (stacks->n_numbers_a));
+	if (!tmp_array_a)
 		free_stacks(stacks, "BOTH");
 	j = 0;
 	i = 1;
-	// We first copy everything but the first  element into a temporary array.
 	while (i < (stacks->n_numbers_a))
 	{
-		tmp_arrayA[j] = (stacks->a)[i];
+		tmp_array_a[j] = (stacks->a)[i];
 		j++;
 		i++;
 	}
 	j = 0;
 	i = 0;
-	// Last one becomes first one 1 2 3 4 5  -->  2 3 4 5 1
 	(stacks->a)[stacks->n_numbers_a - 1] = (stacks->a)[0];
-	// We now copy from element at index 1 up to the end.
 	while (i < stacks->n_numbers_a - 1)
 	{
-		(stacks->a)[i] = tmp_arrayA[i];
+		(stacks->a)[i] = tmp_array_a[i];
 		i++;
 	}
-	free(tmp_arrayA);
+	free(tmp_array_a);
 }
 
 void	rotate_b(t_stack *stacks)
 {
 	int j;
 	int i;
-	long long int *tmp_arrayB;
-	tmp_arrayB = malloc(sizeof(long long int) * (stacks->n_numbers_b));
-	if (!tmp_arrayB)
+	long long int *tmp_array_b;
+	tmp_array_b = malloc(sizeof(long long int) * (stacks->n_numbers_b));
+	if (!tmp_array_b)
 		free_stacks(stacks, "BOTH");
 
 	j = 0;
 	i = 1;
-	// We first copy everything but the first  element into a temporary array.
 	while (i < (stacks->n_numbers_b))
 	{
-		tmp_arrayB[j] = (stacks->b)[i];
+		tmp_array_b[j] = (stacks->b)[i];
 		j++;
 		i++;
 	}
 	j = 0;
 	i = 0;
-	// Last one becomes first one 1 2 3 4 5  -->  x x x x 1
 	(stacks->b)[stacks->n_numbers_b - 1] = (stacks->b)[0];
-	// We now copy from element at index 1 up to the end.
 	while (i < stacks->n_numbers_b - 1)
 	{
-		(stacks->b)[i] = tmp_arrayB[i];
+		(stacks->b)[i] = tmp_array_b[i];
 		i++;
 	}
-	free(tmp_arrayB);
+	free(tmp_array_b);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 09:40:40 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/24 17:59:51 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/29 14:16:55 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,39 +15,39 @@
 
 void	swap_ss(t_stack *stacks)
 {
-	int	tmpA;
-	int	tmpB;
+	int	tmp_A;
+	int	tmp_B;
 
-	tmpA = 0;
-	tmpB = 0;
-	tmpA = (stacks->a)[0];
+	tmp_A = 0;
+	tmp_B = 0;
+	tmp_A = (stacks->a)[0];
 	(stacks->a)[0] = (stacks->a)[1];
-	(stacks->a)[1] = tmpA;
-	tmpB = (stacks->b)[0];
+	(stacks->a)[1] = tmp_A;
+	tmp_B = (stacks->b)[0];
 	(stacks->b)[0] = (stacks->b)[1];
-	(stacks->b)[1] = tmpB;
+	(stacks->b)[1] = tmp_B;
 	ft_printf("ss\n", 1);
 }
 
 void	swap_a(t_stack *stacks)
 {
-	int	tmpA;
+	int	tmp_A;
 
-	tmpA = 0;
-	tmpA = (stacks->a)[0];
+	tmp_A = 0;
+	tmp_A = (stacks->a)[0];
 	(stacks->a)[0] = (stacks->a)[1];
-	(stacks->a)[1] = tmpA;
+	(stacks->a)[1] = tmp_A;
 	ft_printf("sa\n", 1);
 }
 
 void	swap_b(t_stack *stacks)
 {
-	int	tmpB;
+	int	tmp_B;
 
-	tmpB = 0;
-	tmpB = (stacks->b)[0];
+	tmp_B = 0;
+	tmp_B = (stacks->b)[0];
 	(stacks->b)[0] = (stacks->b)[1];
-	(stacks->b)[1] = tmpB;
+	(stacks->b)[1] = tmp_B;
 	ft_printf("sb\n", 1);
 }
 

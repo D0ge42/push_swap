@@ -6,7 +6,7 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:25:19 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/25 12:25:20 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/29 14:18:50 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@
 
 void	check_for_duplicates(t_stack *stacks)
 {
-	int i = 0;
-	int j = 0;
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
 	while (i < stacks->n_numbers_a)
 	{
 		j = i + 1;

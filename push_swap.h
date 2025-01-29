@@ -11,6 +11,9 @@ typedef struct s_stack
 {
 	int				n_numbers_a;
 	int				n_numbers_b;
+	int				index_max;
+	int				index_min;
+	int				avrg;
 	long long int	*a;
 	long long int	*b;
 }					t_stack;
@@ -41,11 +44,20 @@ void	swap_a(t_stack *stacks);
 void	swap_b(t_stack *stacks);
 void	swap_ss(t_stack *stacks);
 void	swap(t_stack *stacks, char which);
-int is_highest_on_top(t_stack *stacks);
+void do_rrotations(t_stack *stacks, int common_rrrotation, int rot_a, int rot_b);
+int find_smallest_n_of_moves(t_stack *stacks, int *total_moves);
+void rotate_a_and_b(t_stack *stacks,int rot_a, int rot_b);
+void do_rotations(t_stack *stacks, int common_rrrotation, int rot_a, int rot_b);
+
 int is_topush_smallest(t_stack *stacks,int index);
 int is_topush_biggest(t_stack *stacks,int index);
 void algorithm(t_stack *stacks);
 int min(int a, int b);
 void print_stacks(t_stack *stacks);
+int get_abs(long long int a);
+int is_already_sorted(t_stack *stacks);
+void ordinate_stack(t_stack *stacks);
+int	find_lowest_num_a(t_stack *stacks);
+
 
 #endif

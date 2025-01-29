@@ -66,3 +66,22 @@ int	min(int a, int b)
 	else
 		return (a);
 }
+int find_smallest_n_of_moves(t_stack *stacks, int *total_moves)
+{
+	int i;
+	int index;
+	int minor;
+	
+	i = -1;
+	index = 0;
+	minor = 2147483647;
+	while (++i < stacks->n_numbers_b)
+	{
+		if (total_moves[i] < minor)
+		{
+			minor = total_moves[i];
+			index = i;
+		}
+	}
+	return index;
+}

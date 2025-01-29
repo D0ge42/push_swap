@@ -6,19 +6,11 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:22:26 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/29 01:25:36 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/29 15:28:29 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// Ac - 1 is gonna be the number of numbers to sort.
-// We've to print the name of operations done. i.e rra pa pb ss etc
-// Sort in ascending order, smallest to greatest
-// We've two stacks. a and b.
-// Stack a contains a random amount of negative/positive numbers. No duplicates.
-// Stack b is empty.
-// no more than 5500 operations for 500 random numbers.
 
 static void	fill_stacks(t_stack *stacks, int ac, char **av);
 
@@ -39,8 +31,8 @@ void	print_stacks(t_stack *stacks)
 		if (i < stacks->n_numbers_a)
 			ft_printf("    A[%i]: %lli", i, (stacks->a)[i]);
 		else
-			ft_printf("              "); // Empty space for Stack A
-		ft_printf("          ");         // Space between stacks
+			ft_printf("              ");
+		ft_printf("          ");
 		if (i < stacks->n_numbers_b)
 			ft_printf("  B[%i]: %lli", i, (stacks->b)[i]);
 		ft_printf("\n");
@@ -63,13 +55,11 @@ int	main(int ac, char **av)
 		return (1);
 	if (ac == 1)
 		free_stacks(stacks, "Struct only");
-	// Initialize stack_a with numbers.
 	fill_stacks(stacks, ac, av);
 	check_for_duplicates(stacks);
+	if (is_already_sorted(stacks))
+		free_stacks(stacks,"BOTH");
 	algorithm(stacks);
-	// print_stacks(stacks);
-	// Function to sort them. It has to take both array. Print Operations on stdout.
-	// Free everything that was previously allocated
 	free_stacks(stacks, "BOTH");
 }
 

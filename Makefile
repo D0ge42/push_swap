@@ -1,7 +1,15 @@
 NAME = push_swap
 LIBFT = libft/libft.a
 
-SRC = push_swap.c error_checking.c utils.c utils2.c push.c rotate.c rrotate.c swap.c algorithm.c
+SRC = push_swap.c \
+error_checking.c \
+utils.c utils2.c \
+push.c rotate.c \
+rrotate.c\
+ swap.c\
+  algorithm.c\
+ do_operations.c\
+ utils3.c
 
 OBJS = $(SRC:.c=.o)
 

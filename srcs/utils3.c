@@ -6,27 +6,32 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 15:20:01 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/29 15:37:21 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/29 20:04:56 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
-int is_already_sorted(t_stack *stacks)
+int	is_already_sorted(t_stack *stacks)
 {
-    int i = 0;
-    while(i < stacks->n_numbers_a)
-    {
-        if (stacks->a[i] > stacks->a[i+1])
-            return 0;
-        i++;
-    }
-    return 1;
+	int	i;
+
+	i = 0;
+	while (i < stacks->n_numbers_a - 1)
+	{
+		if (stacks->a[i] > stacks->a[i + 1])
+			return (0);
+		i++;
+	}
+	return (1);
 }
-void ordinate_stack(t_stack *stacks)
+
+void	ordinate_stack(t_stack *stacks)
 {
-    int ordinate = 0;
-    ordinate = find_lowest_num_a(stacks);
+	int	ordinate;
+
+	ordinate = 0;
+	ordinate = find_lowest_num_a(stacks);
 	while (ordinate)
 	{
 		rotate(stacks, 'a');
@@ -56,4 +61,20 @@ int	find_lowest_num_a(t_stack *stacks)
 	}
 	return (index);
 }
-	
+
+void	handle_sign(char *str, int *i, int *sign)
+{
+	if (str[*i] == '-' || str[*i] == '+')
+	{
+		if (str[*i] == '-')
+			*sign *= -1;
+		(*i)++;
+	}
+}
+
+int	get_abs(long long int num)
+{
+	if (num < 0)
+		return (num *= -1);
+	return (num);
+}

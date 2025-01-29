@@ -6,11 +6,11 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:23:05 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/25 12:23:07 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/29 20:05:05 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 /*Function used to check if a certain char is present in a string*/
 
@@ -56,7 +56,8 @@ void	free_stacks(t_stack *stacks, char *which)
 }
 /* Used to close and free. Prints "Error" on stderror if args are not valid.
 Non valid args are:
-some arguments are bigger than an integer and/or there are duplicates arguments aren’t integers*/
+some arguments are bigger than an integer and/or there are duplicates
+arguments aren’t integers*/
 
 void	close_and_free(t_stack *stacks, char **args, char *args_free)
 {
@@ -97,12 +98,9 @@ long long	ft_atoll(char *str, t_stack *stacks, char **args)
 	i = 0;
 	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
 		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign *= -1;
-		i++;
-	}
+	handle_sign(str, &i, &sign);
+	if (!ft_isdigit(str[i]))
+		close_and_free(stacks, args, "FREE ARGS");
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))

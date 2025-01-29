@@ -6,11 +6,11 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:20:22 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/29 14:23:05 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/29 20:05:24 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	rotate(t_stack *stacks, char which)
 {
@@ -63,13 +63,13 @@ void	rotate_a(t_stack *stacks)
 
 void	rotate_b(t_stack *stacks)
 {
-	int j;
-	int i;
-	long long int *tmp_array_b;
+	int				j;
+	int				i;
+	long long int	*tmp_array_b;
+
 	tmp_array_b = malloc(sizeof(long long int) * (stacks->n_numbers_b));
 	if (!tmp_array_b)
 		free_stacks(stacks, "BOTH");
-
 	j = 0;
 	i = 1;
 	while (i < (stacks->n_numbers_b))

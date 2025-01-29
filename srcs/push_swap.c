@@ -6,40 +6,14 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:22:26 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/29 15:28:29 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/29 20:05:28 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 static void	fill_stacks(t_stack *stacks, int ac, char **av);
-
-#include <stdio.h>
-
-void	print_stacks(t_stack *stacks)
-{
-	int	max_size;
-	int	i;
-
-	max_size = max(stacks->n_numbers_a, stacks->n_numbers_b);
-	i = 0;
-	printf("-------------------------------------\n");
-	printf("   STACK A                   STACK B \n");
-	printf("-------------------------------------\n");
-	while (i < max_size)
-	{
-		if (i < stacks->n_numbers_a)
-			ft_printf("    A[%i]: %lli", i, (stacks->a)[i]);
-		else
-			ft_printf("              ");
-		ft_printf("          ");
-		if (i < stacks->n_numbers_b)
-			ft_printf("  B[%i]: %lli", i, (stacks->b)[i]);
-		ft_printf("\n");
-		i++;
-	}
-	printf("-------------------------------------\n");
-}
+static void	initialize(t_stack *stacks, int ac, char **av);
 
 /*Main function:
 allocates memory for a stack structure.
@@ -58,7 +32,7 @@ int	main(int ac, char **av)
 	fill_stacks(stacks, ac, av);
 	check_for_duplicates(stacks);
 	if (is_already_sorted(stacks))
-		free_stacks(stacks,"BOTH");
+		free_stacks(stacks, "BOTH");
 	algorithm(stacks);
 	free_stacks(stacks, "BOTH");
 }
@@ -75,15 +49,12 @@ void	fill_stacks(t_stack *stacks, int ac, char **av)
 	char	**args;
 
 	k = 0;
-	i = 1;
+	i = 0;
 	j = 0;
 	args = NULL;
-	stacks->n_numbers_a = count_nums(ac, av);
-	stacks->n_numbers_b = 0;
-	stacks->a = malloc(sizeof(long long int) * (stacks->n_numbers_a));
-	stacks->b = malloc(sizeof(long long int) * (stacks->n_numbers_a));
+	initialize(stacks, ac, av);
 	check_malloc_fail(stacks);
-	while (i < ac)
+	while (++i < ac)
 	{
 		if (strchar(' ', av[i]))
 		{
@@ -93,8 +64,40 @@ void	fill_stacks(t_stack *stacks, int ac, char **av)
 		}
 		else
 			(stacks->a)[j++] = ft_atoll(av[i], stacks, args);
-		i++;
 	}
 	if (args)
 		free_args(args);
 }
+
+static void	initialize(t_stack *stacks, int ac, char **av)
+{
+	stacks->n_numbers_a = count_nums(ac, av);
+	stacks->n_numbers_b = 0;
+	stacks->a = malloc(sizeof(long long int) * (stacks->n_numbers_a));
+	stacks->b = malloc(sizeof(long long int) * (stacks->n_numbers_a));
+}
+
+// void	print_stacks(t_stack *stacks)
+// {
+// 	int	max_size;
+// 	int	i;
+
+// 	max_size = max(stacks->n_numbers_a, stacks->n_numbers_b);
+// 	i = 0;
+// 	printf("-------------------------------------\n");
+// 	printf("   STACK A                   STACK B \n");
+// 	printf("-------------------------------------\n");
+// 	while (i < max_size)
+// 	{
+// 		if (i < stacks->n_numbers_a)
+// 			ft_printf("    A[%i]: %lli", i, (stacks->a)[i]);
+// 		else
+// 			ft_printf("              ");
+// 		ft_printf("          ");
+// 		if (i < stacks->n_numbers_b)
+// 			ft_printf("  B[%i]: %lli", i, (stacks->b)[i]);
+// 		ft_printf("\n");
+// 		i++;
+// 	}
+// 	printf("-------------------------------------\n");
+// }

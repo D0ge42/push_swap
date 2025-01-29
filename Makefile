@@ -1,15 +1,16 @@
 NAME = push_swap
 LIBFT = libft/libft.a
 
-SRC = push_swap.c \
-error_checking.c \
-utils.c utils2.c \
-push.c rotate.c \
-rrotate.c\
- swap.c\
-  algorithm.c\
- do_operations.c\
- utils3.c
+SRC = srcs/push_swap.c \
+srcs/error_checking.c \
+srcs/utils.c srcs/utils2.c \
+srcs/push.c srcs/rotate.c \
+srcs/rrotate.c\
+ srcs/swap.c\
+  srcs/algorithm.c\
+ srcs/do_operations.c\
+ srcs/utils3.c\
+ srcs/utils4.c
 
 OBJS = $(SRC:.c=.o)
 

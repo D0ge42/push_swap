@@ -6,48 +6,47 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 09:40:40 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/29 14:16:55 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/29 20:05:10 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	swap_ss(t_stack *stacks)
 {
-	int	tmp_A;
-	int	tmp_B;
+	int	tmp_a;
+	int	tmp_b;
 
-	tmp_A = 0;
-	tmp_B = 0;
-	tmp_A = (stacks->a)[0];
+	tmp_a = 0;
+	tmp_b = 0;
+	tmp_a = (stacks->a)[0];
 	(stacks->a)[0] = (stacks->a)[1];
-	(stacks->a)[1] = tmp_A;
-	tmp_B = (stacks->b)[0];
+	(stacks->a)[1] = tmp_a;
+	tmp_b = (stacks->b)[0];
 	(stacks->b)[0] = (stacks->b)[1];
-	(stacks->b)[1] = tmp_B;
+	(stacks->b)[1] = tmp_b;
 	ft_printf("ss\n", 1);
 }
 
 void	swap_a(t_stack *stacks)
 {
-	int	tmp_A;
+	int	tmp_a;
 
-	tmp_A = 0;
-	tmp_A = (stacks->a)[0];
+	tmp_a = 0;
+	tmp_a = (stacks->a)[0];
 	(stacks->a)[0] = (stacks->a)[1];
-	(stacks->a)[1] = tmp_A;
+	(stacks->a)[1] = tmp_a;
 	ft_printf("sa\n", 1);
 }
 
 void	swap_b(t_stack *stacks)
 {
-	int	tmp_B;
+	int	tmp_b;
 
-	tmp_B = 0;
-	tmp_B = (stacks->b)[0];
+	tmp_b = 0;
+	tmp_b = (stacks->b)[0];
 	(stacks->b)[0] = (stacks->b)[1];
-	(stacks->b)[1] = tmp_B;
+	(stacks->b)[1] = tmp_b;
 	ft_printf("sb\n", 1);
 }
 

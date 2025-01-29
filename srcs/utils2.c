@@ -1,4 +1,16 @@
-#include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/29 19:13:21 by lonulli           #+#    #+#             */
+/*   Updated: 2025/01/29 20:05:01 by lonulli          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/push_swap.h"
 
 /* Function that will count the total numbers we've to fill the stack with.
 It will count "1 2 3" as 3 number and same goes for 1 2 3. */
@@ -66,12 +78,13 @@ int	min(int a, int b)
 	else
 		return (a);
 }
-int find_smallest_n_of_moves(t_stack *stacks, int *total_moves)
+
+int	find_smallest_n_of_moves(t_stack *stacks, int *total_moves)
 {
-	int i;
-	int index;
-	int minor;
-	
+	int	i;
+	int	index;
+	int	minor;
+
 	i = -1;
 	index = 0;
 	minor = 2147483647;
@@ -83,5 +96,5 @@ int find_smallest_n_of_moves(t_stack *stacks, int *total_moves)
 			index = i;
 		}
 	}
-	return index;
+	return (index);
 }

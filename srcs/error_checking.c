@@ -6,11 +6,11 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:25:19 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/29 14:18:50 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/29 20:05:32 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 /*Check for duplicates inside initialized and filled stacks*/
 

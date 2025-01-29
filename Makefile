@@ -1,4 +1,5 @@
 NAME = push_swap
+BONUS = checker
 LIBFT = libft/libft.a
 
 SRC = srcs/push_swap.c \
@@ -12,7 +13,21 @@ srcs/rrotate.c\
  srcs/utils3.c\
  srcs/utils4.c
 
+BONUS_SRC = bonus/checker_bonus.c \
+			bonus/error_checking.c\
+			bonus/push.c\
+			bonus/reader.c\
+			bonus/rotate.c\
+			bonus/rrotate.c\
+			bonus/swap.c\
+			bonus/utils.c\
+			bonus/utils2.c\
+			bonus/utils3.c\
+			bonus/utils4.c\
+
+
 OBJS = $(SRC:.c=.o)
+BONUS_OBJS = $(BONUS_SRC:.c=.o)
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g -gdwarf-4
@@ -21,29 +36,34 @@ AR = ar crs
 
 # Regola per creare l'eseguibile
 $(NAME): $(OBJS) $(LIBFT)
-	@$(CC) -o push_swap $(CFLAGS) $(OBJS) -Llibft -lft
+	@$(CC) -o $@ $(CFLAGS) $^ -Llibft -lft
 	@echo "\033[32m$(NAME) compiled :D\033[0m"
+
+$(BONUS): $(BONUS_OBJS) $(LIBFT)
+	@$(CC) -o $@ $(CFLAGS) $^ -Llibft -lft
+	@echo "\033[32m$(BONUS) compiled :D\033[0m"
 
 # Regola per creare i file .o
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Regola all
-all: $(NAME) libft
+all: $(NAME) $(BONUS)
 
-bonus: all
+bonus: $(BONUS)
 
 $(LIBFT): 
 	@$(MAKE) --no-print-directory -C libft
 
 # Pulizia degli oggetti
 clean:
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJS) 
+	@$(RM) $(BONUS_OBJS) 
 	@$(MAKE) --no-print-directory -C libft clean
 
 # Pulizia completa
 fclean: clean
-	@$(RM) $(NAME) $(LIBFT)
+	@$(RM) $(NAME) $(LIBFT) $(BONUS)
 
 # Ricostruzione completa
 re: fclean all

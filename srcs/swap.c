@@ -6,7 +6,7 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 09:40:40 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/29 20:05:10 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/30 15:33:38 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	swap(t_stack *stacks, char which)
 		swap_a(stacks);
 	else if (stacks->n_numbers_b > 1 && which == 'b')
 		swap_b(stacks);
-	else if (stacks->n_numbers_b > 1 && which == 'b' && stacks->n_numbers_a > 1
-		&& which == 'a' && which == BOTH)
+	else if (stacks->n_numbers_b > 1
+		&& stacks->n_numbers_a > 1 && which == BOTH)
 		swap_ss(stacks);
 }

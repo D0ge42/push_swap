@@ -6,7 +6,7 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:22:26 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/29 20:05:28 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/30 15:18:29 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,24 +49,25 @@ void	fill_stacks(t_stack *stacks, int ac, char **av)
 	char	**args;
 
 	k = 0;
-	i = 0;
+	i = 1;
 	j = 0;
 	args = NULL;
 	initialize(stacks, ac, av);
 	check_malloc_fail(stacks);
-	while (++i < ac)
+	while (i < ac)
 	{
-		if (strchar(' ', av[i]))
+		k = 0;
+		args = ft_split(av[i], ' ');
+		if (!args[0])
+			close_and_free(stacks, args, "BOTH");
+		while (args[k])
 		{
-			args = ft_split(av[i], ' ');
-			while (args[k])
-				(stacks->a)[j++] = ft_atoll(args[k++], stacks, args);
+			(stacks->a)[j++] = ft_atoll(args[k], stacks, args);
+			k++;
 		}
-		else
-			(stacks->a)[j++] = ft_atoll(av[i], stacks, args);
+		i++;
 	}
-	if (args)
-		free_args(args);
+	free_args(args);
 }
 
 static void	initialize(t_stack *stacks, int ac, char **av)

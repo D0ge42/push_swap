@@ -6,7 +6,7 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 19:26:58 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/29 22:35:15 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/30 11:21:51 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ int					find_lowest_num_a(t_stack *stacks);
 
 int					do_operations(char *operation, t_stack *stacks);
 int					read_from_stdin(t_stack *stacks);
+void				is_stack_sorted(t_stack *stacks);
 
 #endif

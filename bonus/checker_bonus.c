@@ -6,7 +6,7 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:22:26 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/29 22:42:25 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/30 15:25:55 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	fill_stacks(t_stack *stacks, int ac, char **av);
 static void	initialize(t_stack *stacks, int ac, char **av);
 void		is_stack_sorted(t_stack *stacks);
+void		print_stacks(t_stack *stacks);
 
 /*Main function:
 allocates memory for a stack structure.
@@ -32,8 +33,6 @@ int	main(int ac, char **av)
 		free_stacks(stacks, "Struct only");
 	fill_stacks(stacks, ac, av);
 	check_for_duplicates(stacks);
-	if (is_already_sorted(stacks))
-		free_stacks(stacks, "BOTH");
 	read_from_stdin(stacks);
 	is_stack_sorted(stacks);
 	free_stacks(stacks, "BOTH");
@@ -51,24 +50,25 @@ void	fill_stacks(t_stack *stacks, int ac, char **av)
 	char	**args;
 
 	k = 0;
-	i = 0;
+	i = 1;
 	j = 0;
 	args = NULL;
 	initialize(stacks, ac, av);
 	check_malloc_fail(stacks);
-	while (++i < ac)
+	while (i < ac)
 	{
-		if (strchar(' ', av[i]))
+		k = 0;
+		args = ft_split(av[i], ' ');
+		if (!args[0])
+			close_and_free(stacks, args, "BOTH");
+		while (args[k])
 		{
-			args = ft_split(av[i], ' ');
-			while (args[k])
-				(stacks->a)[j++] = ft_atoll(args[k++], stacks, args);
+			(stacks->a)[j++] = ft_atoll(args[k], stacks, args);
+			k++;
 		}
-		else
-			(stacks->a)[j++] = ft_atoll(av[i], stacks, args);
-	}
-	if (args)
 		free_args(args);
+		i++;
+	}
 }
 
 static void	initialize(t_stack *stacks, int ac, char **av)
@@ -89,35 +89,35 @@ void	is_stack_sorted(t_stack *stacks)
 		if (stacks->a[i] > stacks->a[i + 1])
 		{
 			ft_putstr_fd("KO\n", 1);
-			exit(EXIT_FAILURE);
+			free_stacks(stacks, "BOTH");
 		}
 		i++;
 	}
 	ft_putstr_fd("OK\n", 1);
-	exit(EXIT_SUCCESS);
+	free_stacks(stacks, "BOTH");
 }
 
-// void	print_stacks(t_stack *stacks)
-// {
-// 	int	max_size;
-// 	int	i;
+void	print_stacks(t_stack *stacks)
+{
+	int	max_size;
+	int	i;
 
-// 	max_size = max(stacks->n_numbers_a, stacks->n_numbers_b);
-// 	i = 0;
-// 	printf("-------------------------------------\n");
-// 	printf("   STACK A                   STACK B \n");
-// 	printf("-------------------------------------\n");
-// 	while (i < max_size)
-// 	{
-// 		if (i < stacks->n_numbers_a)
-// 			ft_printf("    A[%i]: %lli", i, (stacks->a)[i]);
-// 		else
-// 			ft_printf("              ");
-// 		ft_printf("          ");
-// 		if (i < stacks->n_numbers_b)
-// 			ft_printf("  B[%i]: %lli", i, (stacks->b)[i]);
-// 		ft_printf("\n");
-// 		i++;
-// 	}
-// 	printf("-------------------------------------\n");
-// }
+	max_size = max(stacks->n_numbers_a, stacks->n_numbers_b);
+	i = 0;
+	printf("-------------------------------------\n");
+	printf("   STACK A                   STACK B \n");
+	printf("-------------------------------------\n");
+	while (i < max_size)
+	{
+		if (i < stacks->n_numbers_a)
+			ft_printf("    A[%i]: %lli", i, (stacks->a)[i]);
+		else
+			ft_printf("              ");
+		ft_printf("          ");
+		if (i < stacks->n_numbers_b)
+			ft_printf("  B[%i]: %lli", i, (stacks->b)[i]);
+		ft_printf("\n");
+		i++;
+	}
+	printf("-------------------------------------\n");
+}

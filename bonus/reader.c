@@ -6,19 +6,17 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 20:32:22 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/29 23:06:18 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/30 15:32:38 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
 
-char	*gnl_checker(int fd)
+char	*gnl_checker(int fd, int i, int r)
 {
 	char	*buffer;
-	int		i;
-	int		r;
 	char	c;
-    char    *line;
+	char	*line;
 
 	i = 0;
 	r = 0;
@@ -26,16 +24,15 @@ char	*gnl_checker(int fd)
 	if (!buffer)
 		return (NULL);
 	r = read(fd, &c, 1);
-    if (!r)
-    {
-        free(buffer);
-        return NULL;
-    }
+	if (!r)
+	{
+		free(buffer);
+		return (NULL);
+	}
 	while (r && c != '\n' && c != '\0')
 	{
 		if (c != '\n' && c != '\0')
-			buffer[i] = c;
-		i++;
+			buffer[i++] = c;
 		r = read(fd, &c, 1);
 	}
 	buffer[i] = '\n';
@@ -47,21 +44,24 @@ char	*gnl_checker(int fd)
 int	read_from_stdin(t_stack *stacks)
 {
 	char	*operation;
-	
-    operation = NULL;
+
+	operation = NULL;
 	while (1)
 	{
-		operation = gnl_checker(0);
+		operation = gnl_checker(0, 0, 0);
 		if (!operation)
-        {
-            free(operation);
-			break ;
-        }
-		if (!do_operations(operation, stacks))
-        {
-		    free(operation);
+		{
+			free(operation);
+			is_stack_sorted(stacks);
 			free_stacks(stacks, "BOTH");
-        }
+			break ;
+		}
+		if (!do_operations(operation, stacks))
+		{
+			ft_putstr_fd("Error\n", 2);
+			free(operation);
+			free_stacks(stacks, "BOTH");
+		}
 		free(operation);
 	}
 	return (1);

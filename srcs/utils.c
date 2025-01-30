@@ -6,7 +6,7 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:23:05 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/29 20:05:05 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/30 17:55:00 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ arguments aren’t integers*/
 void	close_and_free(t_stack *stacks, char **args, char *args_free)
 {
 	ft_putstr_fd("Error\n", 2);
-	if (!ft_strcmp(args_free, "FREE ARGS") && args)
+	if (!ft_strcmp(args_free, "FREE ARGS"))
 		free_args(args);
 	free_stacks(stacks, "BOTH");
 }

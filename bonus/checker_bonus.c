@@ -6,7 +6,7 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:22:26 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/30 15:25:55 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/30 17:07:32 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	fill_stacks(t_stack *stacks, int ac, char **av)
 		k = 0;
 		args = ft_split(av[i], ' ');
 		if (!args[0])
-			close_and_free(stacks, args, "BOTH");
+			close_and_free(stacks, args, "FREE ARGS");
 		while (args[k])
 		{
 			(stacks->a)[j++] = ft_atoll(args[k], stacks, args);
@@ -97,27 +97,27 @@ void	is_stack_sorted(t_stack *stacks)
 	free_stacks(stacks, "BOTH");
 }
 
-void	print_stacks(t_stack *stacks)
-{
-	int	max_size;
-	int	i;
+// void	print_stacks(t_stack *stacks)
+// {
+// 	int	max_size;
+// 	int	i;
 
-	max_size = max(stacks->n_numbers_a, stacks->n_numbers_b);
-	i = 0;
-	printf("-------------------------------------\n");
-	printf("   STACK A                   STACK B \n");
-	printf("-------------------------------------\n");
-	while (i < max_size)
-	{
-		if (i < stacks->n_numbers_a)
-			ft_printf("    A[%i]: %lli", i, (stacks->a)[i]);
-		else
-			ft_printf("              ");
-		ft_printf("          ");
-		if (i < stacks->n_numbers_b)
-			ft_printf("  B[%i]: %lli", i, (stacks->b)[i]);
-		ft_printf("\n");
-		i++;
-	}
-	printf("-------------------------------------\n");
-}
+// 	max_size = max(stacks->n_numbers_a, stacks->n_numbers_b);
+// 	i = 0;
+// 	printf("-------------------------------------\n");
+// 	printf("   STACK A                   STACK B \n");
+// 	printf("-------------------------------------\n");
+// 	while (i < max_size)
+// 	{
+// 		if (i < stacks->n_numbers_a)
+// 			ft_printf("    A[%i]: %lli", i, (stacks->a)[i]);
+// 		else
+// 			ft_printf("              ");
+// 		ft_printf("          ");
+// 		if (i < stacks->n_numbers_b)
+// 			ft_printf("  B[%i]: %lli", i, (stacks->b)[i]);
+// 		ft_printf("\n");
+// 		i++;
+// 	}
+// 	printf("-------------------------------------\n");
+// }

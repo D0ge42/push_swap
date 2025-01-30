@@ -6,7 +6,7 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 12:22:26 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/30 15:18:29 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/30 18:21:08 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ free everything that was previously allocated. */
 int	main(int ac, char **av)
 {
 	t_stack	*stacks;
-
+	
 	stacks = malloc(sizeof(t_stack));
 	if (!stacks)
 		return (1);
@@ -59,15 +59,15 @@ void	fill_stacks(t_stack *stacks, int ac, char **av)
 		k = 0;
 		args = ft_split(av[i], ' ');
 		if (!args[0])
-			close_and_free(stacks, args, "BOTH");
+			close_and_free(stacks, args, "FREE ARGS");
 		while (args[k])
 		{
 			(stacks->a)[j++] = ft_atoll(args[k], stacks, args);
 			k++;
 		}
+		free_args(args);
 		i++;
 	}
-	free_args(args);
 }
 
 static void	initialize(t_stack *stacks, int ac, char **av)

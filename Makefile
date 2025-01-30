@@ -14,16 +14,16 @@ srcs/rrotate.c\
  srcs/utils4.c
 
 BONUS_SRC = bonus/checker_bonus.c \
-			bonus/error_checking.c\
-			bonus/push.c\
-			bonus/reader.c\
-			bonus/rotate.c\
-			bonus/rrotate.c\
-			bonus/swap.c\
-			bonus/utils.c\
-			bonus/utils2.c\
-			bonus/utils3.c\
-			bonus/utils4.c\
+			bonus/error_checking_bonus.c\
+			bonus/push_bonus.c\
+			bonus/reader_bonus.c\
+			bonus/rotate_bonus.c\
+			bonus/rrotate_bonus.c\
+			bonus/swap_bonus.c\
+			bonus/utils_bonus.c\
+			bonus/utils2_bonus.c\
+			bonus/utils3_bonus.c\
+			bonus/utils4_bonus.c\
 
 
 OBJS = $(SRC:.c=.o)

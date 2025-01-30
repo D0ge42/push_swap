@@ -6,7 +6,7 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 19:13:21 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/30 13:32:53 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/30 18:31:03 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,15 @@ int	count_nums(int ac, char **av)
 	{
 		k = 0;
 		args = ft_split(av[i], ' ');
-		while (args[k++])
+		while (args[k])
+		{
+			k++;
 			total_nums++;
+		}
 		i++;
+		free_args(args);
 	}
-	free_args(args);
+	
 	return (total_nums);
 }
 /*Function used to free arguments we get by using split on **av */

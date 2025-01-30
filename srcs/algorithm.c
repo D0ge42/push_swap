@@ -44,7 +44,7 @@ void	algorithm(t_stack *stacks)
 	free(total_moves);
 }
 
-/*Move parser will get the minimum value 
+/*Move parser will get the minimum value
 out of the absolute value of rot_a and rot_b.
 These are basically the rotations we've to do on each stack
 before pushing the optimal number. It will get the minimum out of the two.
@@ -117,7 +117,7 @@ int	num_rotation_b(t_stack *stacks, int index)
 	return (rotations);
 }
 /*Same functionality of num_rotation_b but this time we've to confront
-the number we wanna push with each number in stack_a. Since Stack_a is already 
+the number we wanna push with each number in stack_a. Since Stack_a is already
 sorted at this point, we just find for a value at index [i - 1] that is smaller
 and bigger at index [i].
 That does not apply if the number is the biggest or smallest.

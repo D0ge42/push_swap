@@ -23,7 +23,7 @@ free everything that was previously allocated. */
 int	main(int ac, char **av)
 {
 	t_stack	*stacks;
-	
+
 	stacks = malloc(sizeof(t_stack));
 	if (!stacks)
 		return (1);

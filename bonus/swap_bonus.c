@@ -53,7 +53,7 @@ void	swap(t_stack *stacks, char which)
 		swap_a(stacks);
 	else if (stacks->n_numbers_b > 1 && which == 'b')
 		swap_b(stacks);
-	else if (stacks->n_numbers_b > 1
-		&& stacks->n_numbers_a > 1 && which == BOTH)
+	else if (stacks->n_numbers_b > 1 && stacks->n_numbers_a > 1
+		&& which == BOTH)
 		swap_ss(stacks);
 }

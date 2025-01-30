@@ -1,16 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   general_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 19:13:21 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/30 21:16:35 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/30 21:42:08 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+/* Atoll is atoi to long long num. Similar to atoi
+but it checks also if resulting num is in the integers range.
+This has to be done inside the function cause the resulting number can overflow
+and this can resulting in accepting args that are not valid.
+It will also check if there are also non digits characters.
+In case of error it will free, print "Error" and exit the main program. */
+
+long long	ft_atoll(char *str, t_stack *stacks, char **args)
+{
+	long long	num;
+	int			sign;
+	int			i;
+
+	if (ft_strlen(str) == 0)
+		close_and_free(stacks, args, "FREE ARGS");
+	num = 0;
+	sign = 1;
+	i = 0;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	handle_sign(str, &i, &sign);
+	if (!ft_isdigit(str[i]))
+		close_and_free(stacks, args, "FREE ARGS");
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			close_and_free(stacks, args, "FREE ARGS");
+		num = (num * 10) + (str[i] - '0');
+		if (!is_int(num * sign))
+			close_and_free(stacks, args, "FREE ARGS");
+		i++;
+	}
+	return (num * sign);
+}
 
 /* Function that will count the total numbers we've to fill the stack with.
 It will count "1 2 3" as 3 number and same goes for 1 2 3. */
@@ -39,33 +74,16 @@ int	count_nums(int ac, char **av)
 	}
 	return (total_nums);
 }
-/*Function used to free arguments we get by using split on **av */
 
-void	free_args(char **args)
+int	strchar(char c, char *str)
 {
-	int	i;
-
-	i = -1;
-	while (args[++i] && args)
-		free(args[i]);
-	free(args);
-}
-
-/*Check if malloc fails when allocating memory for both stacks*/
-
-void	check_malloc_fail(t_stack *stacks)
-{
-	if (!stacks->a)
+	while (*str)
 	{
-		free(stacks);
-		exit(EXIT_FAILURE);
+		if (c == *str)
+			return (1);
+		str++;
 	}
-	else if (!stacks->b)
-	{
-		free(stacks->a);
-		free(stacks);
-		exit(EXIT_FAILURE);
-	}
+	return (0);
 }
 
 int	min(int a, int b)

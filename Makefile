@@ -4,14 +4,14 @@ LIBFT = libft/libft.a
 
 SRC = srcs/push_swap.c \
 srcs/error_checking.c \
-srcs/utils.c srcs/utils2.c \
+srcs/general_utils.c srcs/memory_handler.c \
 srcs/push.c srcs/rotate.c \
 srcs/rrotate.c\
  srcs/swap.c\
   srcs/algorithm.c\
  srcs/do_operations.c\
- srcs/utils3.c\
- srcs/utils4.c
+ srcs/algorithm_utils.c\
+ srcs/sort_utils.c
 
 BONUS_SRC = bonus/checker_bonus.c \
 			bonus/error_checking_bonus.c\
@@ -20,10 +20,10 @@ BONUS_SRC = bonus/checker_bonus.c \
 			bonus/rotate_bonus.c\
 			bonus/rrotate_bonus.c\
 			bonus/swap_bonus.c\
-			bonus/utils_bonus.c\
-			bonus/utils2_bonus.c\
-			bonus/utils3_bonus.c\
-			bonus/utils4_bonus.c\
+			bonus/memory_handler_bonus.c\
+			bonus/sort_utils_bonus.c\
+			bonus/general_utils_bonus.c\
+			bonus/algorithm_utils_bonus.c\
 
 
 OBJS = $(SRC:.c=.o)

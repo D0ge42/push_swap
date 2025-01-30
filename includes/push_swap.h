@@ -6,7 +6,7 @@
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 19:26:58 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/29 20:06:10 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/30 21:38:00 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int					is_topush_smallest(t_stack *stacks, int index);
 void				sort_stack_a(t_stack *stacks);
 void				find_biggest_and_lowest(t_stack *stacks);
 void				handle_push(t_stack *stacks);
+int					is_int(long long int num);
 
 /*Operations*/
 

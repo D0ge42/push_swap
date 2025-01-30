@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils4.c                                           :+:      :+:    :+:   */
+/*   algorithm_utils_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lonulli <lonulli@student.42roma.it>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 19:16:04 by lonulli           #+#    #+#             */
-/*   Updated: 2025/01/29 22:06:42 by lonulli          ###   ########.fr       */
+/*   Updated: 2025/01/30 21:39:57 by lonulli          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker_bonus.h"
+#include "../includes/push_swap.h"
 
 void	handle_push(t_stack *stacks)
 {
@@ -59,14 +59,27 @@ void	find_biggest_and_lowest(t_stack *stacks)
 	}
 }
 
-void	sort_stack_a(t_stack *stacks)
+int	find_lowest_num_a(t_stack *stacks)
 {
-	if (stacks->a[0] > stacks->a[1] && stacks->a[0] > stacks->a[2])
-		rotate(stacks, 'a');
-	else if (stacks->a[1] > stacks->a[0] && stacks->a[1] > stacks->a[2])
-		rrotate(stacks, 'a');
-	if (stacks->a[0] > stacks->a[1])
-		swap(stacks, 'a');
+	int	i;
+	int	lowest;
+	int	index;
+	int	to_check;
+
+	i = 0;
+	lowest = (stacks->a)[0];
+	index = 0;
+	while (i < stacks->n_numbers_a)
+	{
+		to_check = (stacks->a)[i];
+		if (to_check < lowest)
+		{
+			lowest = to_check;
+			index = i;
+		}
+		i++;
+	}
+	return (index);
 }
 
 int	is_topush_biggest(t_stack *stacks, int index)
